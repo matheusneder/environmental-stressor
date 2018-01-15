@@ -6,14 +6,15 @@ using Microsoft.Extensions.Logging;
 
 namespace KubernetesValidation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class SimulationsController : Controller
     {
         private readonly ILogger logger;
 
         public SimulationsController(ILoggerFactory loggerFactory)
         {
-            logger = loggerFactory.CreateLogger<SimulationsController>();
+            logger = loggerFactory?.CreateLogger<SimulationsController>() ??
+                throw new ArgumentNullException(nameof(loggerFactory));
         }
 
         [HttpGet(nameof(LongRunning))]
