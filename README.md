@@ -8,3 +8,11 @@ It provides operations to simulate:
   - Memory leak
   - Out of memory
   - High throughput
+
+# Running
+
+Use docker: https://hub.docker.com/r/matheusneder/environmental-stressor
+
+```
+# docker run matheusneder/environmental-stressor:v1
+```
