@@ -11,7 +11,7 @@ It provides operations to simulate:
 
 # Running
 
-Docker image is available at: https://hub.docker.com/r/matheusneder/environmental-stressor
+Docker image available at: https://hub.docker.com/r/matheusneder/environmental-stressor
 
 ```
 # docker run matheusneder/environmental-stressor:v1
