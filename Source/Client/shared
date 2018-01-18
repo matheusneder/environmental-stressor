@@ -1,0 +1,36 @@
+if [ "x$ENVSTRESS_URL_PREFIX" == "x" ]
+then
+	echo "Missing ENVSTRESS_URL_PREFIX environment variable." >> /dev/stderr
+	echo "Define it and try again (Example value: http://localhost:8080/)" >> /dev/stderr
+	exit 1
+fi
+
+
+function path-combine
+{
+	local left=$(echo $1  | sed 's/\/*$//')
+	local right=$(echo $2 | sed 's/^\/*//')
+	echo "$left/$right"
+}
+
+function build-url
+{
+	echo $(path-combine $ENVSTRESS_URL_PREFIX "$1")
+}
+
+function perform-action
+{
+	curl $(build-url "$1")
+}
+
+function perform-action-quietly
+{
+	perform-action $1 > /dev/null 2>&1	
+}
+
+function is-valid-integer
+{
+	echo "$1" | egrep '^[1-9][0-9]*$' > /dev/null 2>&1
+
+	return $?
+}
