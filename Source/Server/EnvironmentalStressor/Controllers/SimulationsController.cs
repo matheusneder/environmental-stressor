@@ -82,6 +82,8 @@ namespace KubernetesValidation.Controllers
             HttpContext.Response.ContentType = "application/octet-stream";
             HttpContext.Response.ContentLength = 1024 * 1024 * megabytes;
 
+            Thread.Sleep(random.Next(0, 5000));
+
             for (var i = 0; i < megabytes; i++)
             {
                 var buffer = new Byte[1024 * 1024];
