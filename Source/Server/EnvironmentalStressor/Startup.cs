@@ -40,9 +40,10 @@ namespace EnvironmentalStressor
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             ConfigureLog(app, env, loggerFactory);
+            app.UseGracefullShutdown(applicationLifetime, loggerFactory);
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
