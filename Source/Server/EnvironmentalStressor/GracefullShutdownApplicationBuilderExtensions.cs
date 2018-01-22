@@ -7,47 +7,54 @@ using System.Threading.Tasks;
 
 namespace EnvironmentalStressor
 {
-    //public static class GracefullShutdownApplicationBuilderExtensions
-    //{
-    //    private static int requestCount = 0;
-    //    private static object lockPad = new object();
-    //    private static ILogger logger;
+    public static class GracefullShutdownApplicationBuilderExtensions
+    {
+        public static IApplicationBuilder UseGracefullShutdown(this IApplicationBuilder applicationBuilder)
+        {
+            applicationBuilder.UseMiddleware<GracefullShutdownMiddleware>();
 
-    //    public static IApplicationBuilder UseGracefullShutdown(this IApplicationBuilder applicationBuilder,
-    //        IApplicationLifetime applicationLifetime, ILoggerFactory loggerFactory)
-    //    {
-    //        logger = loggerFactory.CreateLogger("GracefullShutdown");
+            return applicationBuilder;
+        }
 
-    //        applicationBuilder.Use(async (HttpContext context, Func<Task> next) =>
-    //        {
-    //            lock (lockPad)
-    //            {
-    //                requestCount++;
-    //            }
+        //    private static int requestCount = 0;
+        //    private static object lockPad = new object();
+        //    private static ILogger logger;
 
-    //            await next.Invoke();
+        //    public static IApplicationBuilder UseGracefullShutdown(this IApplicationBuilder applicationBuilder,
+        //        IApplicationLifetime applicationLifetime, ILoggerFactory loggerFactory)
+        //    {
+        //        logger = loggerFactory.CreateLogger("GracefullShutdown");
 
-    //            lock (lockPad)
-    //            {
-    //                requestCount--;
-    //            }
-    //        });
+        //        applicationBuilder.Use(async (HttpContext context, Func<Task> next) =>
+        //        {
+        //            lock (lockPad)
+        //            {
+        //                requestCount++;
+        //            }
 
-    //        applicationLifetime.ApplicationStopping.Register(() =>
-    //        {
-    //            logger.LogInformation("Application stopping, waiting for pending requests to complete...");
+        //            await next.Invoke();
 
-    //            do
-    //            {
-    //                Task.Delay(1000).Wait();
-    //                logger.LogInformation($"Current request count: {requestCount}");
-    //            }
-    //            while (requestCount > 0);
+        //            lock (lockPad)
+        //            {
+        //                requestCount--;
+        //            }
+        //        });
 
-    //            logger.LogInformation("Done! Application will now stop.");
-    //        });
+        //        applicationLifetime.ApplicationStopping.Register(() =>
+        //        {
+        //            logger.LogInformation("Application stopping, waiting for pending requests to complete...");
 
-    //        return applicationBuilder;
-    //    }
-    //}
+        //            do
+        //            {
+        //                Task.Delay(1000).Wait();
+        //                logger.LogInformation($"Current request count: {requestCount}");
+        //            }
+        //            while (requestCount > 0);
+
+        //            logger.LogInformation("Done! Application will now terminate.");
+        //        });
+
+        //        return applicationBuilder;
+        //    }
+    }
 }
