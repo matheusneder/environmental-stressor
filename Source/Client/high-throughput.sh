@@ -2,12 +2,12 @@
 
 source $(dirname $0)/shared
 
-if ! is-valid-integer $1
+if ! is-valid-integer $1 || ! is-valid-integer $2
 then
-	echo "Missing 'megabytes' or the given argument is not a valid integer" >> /dev/stderr
+	echo "Missing arguments" >> /dev/stderr
 	echo "Usage: "
-	echo "$0 10"
+	echo "$0 [megabytes] [sleepForMilliseconds]"
 	exit 1
 fi
 
-perform-action-quietly "/Simulations/HighThroughput/$1"
+perform-action-quietly "/Simulations/HighThroughput/$1/$2"
