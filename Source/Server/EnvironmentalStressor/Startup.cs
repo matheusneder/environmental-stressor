@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using GracefullShutdown;
+using Graceterm;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,7 +26,6 @@ namespace EnvironmentalStressor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGracefullShutdown();
             services.AddMvc();
             services.AddSwaggerGen(c =>
             {
@@ -46,10 +45,7 @@ namespace EnvironmentalStressor
         {
             ConfigureLog(app, env, loggerFactory);
 
-            app.UseGracefullShutdown(o =>
-            {
-                o.ShutdownTimeout = TimeSpan.FromSeconds(120);
-            });
+            app.UseGraceterm();
 
             app.UseMvc();
             app.UseSwagger();
