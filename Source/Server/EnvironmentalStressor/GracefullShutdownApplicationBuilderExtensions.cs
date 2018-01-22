@@ -33,13 +33,13 @@ namespace EnvironmentalStressor
                 }
             });
 
-            applicationLifetime.ApplicationStopping.Register(async () =>
+            applicationLifetime.ApplicationStopping.Register(() =>
             {
                 logger.LogInformation("Application stopping, waiting for pending requests to complete...");
 
                 do
                 {
-                    await Task.Delay(1000);
+                    Task.Delay(1000).Wait();
                     logger.LogInformation($"Current request count: {requestCount}");
                 }
                 while (requestCount > 0);
