@@ -40,7 +40,7 @@ namespace EnvironmentalStressor
             do
             {
                 Task.Delay(1000).Wait();
-                _logger?.LogInformation(WaitingForPendingRequests, "Current request count: {requestCount}", _requestCount);
+                _logger?.LogInformation(WaitingForPendingRequests, "Current request count: {RequestCount}", _requestCount);
             }
             while (_requestCount > 0);
 

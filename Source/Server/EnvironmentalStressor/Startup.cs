@@ -43,7 +43,6 @@ namespace EnvironmentalStressor
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IApplicationLifetime applicationLifetime)
         {
             ConfigureLog(app, env, loggerFactory);
-            //app.UseGracefullShutdown(applicationLifetime, loggerFactory);
             app.UseGracefullShutdown();
             app.UseMvc();
             app.UseSwagger();
