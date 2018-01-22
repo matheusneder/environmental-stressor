@@ -52,10 +52,10 @@ namespace EnvironmentalStressor
             });
 
             // Simulate long running startup
-            var time = new Random().Next(5000, 25000);
-            Log.Logger.Information($"{nameof(Configure)}: Waiting for {time} ms", time);
-            Thread.Sleep(time);
-            Log.Logger.Information($"{nameof(Configure)}: Successfully waitted for {time} ms", time);
+            //var time = new Random().Next(5000, 25000);
+            //Log.Logger.Information($"{nameof(Configure)}: Waiting for {time} ms", time);
+            //Thread.Sleep(time);
+            //Log.Logger.Information($"{nameof(Configure)}: Successfully waitted for {time} ms", time);
         }
 
         private void ConfigureLog(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
