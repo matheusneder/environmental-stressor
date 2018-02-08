@@ -15,9 +15,11 @@ dotnet publish -r linux-x64 -c Release -o $ARTIFACTS_FOLDER
 
 cd $ARTIFACTS_FOLDER
 
-docker build -t matheusneder/environmental-stressor:v$TRAVIS_BUILD_NUMBER -t matheusneder/environmental-stressor:latest .
+IMAGE_NAME="matheusneder/environmental-stressor"
+
+docker build -t $IMAGE_NAME:$TRAVIS_TAG -t $IMAGE_NAME:latest .
 docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-docker push matheusneder/environmental-stressor:v$TRAVIS_BUILD_NUMBER
-docker push matheusneder/environmental-stressor:latest
+docker push $IMAGE_NAME:$TRAVIS_TAG
+docker push $IMAGE_NAME:latest
 
 rm -Rf $ARTIFACTS_FOLDER
