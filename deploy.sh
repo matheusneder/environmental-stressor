@@ -15,9 +15,9 @@ dotnet publish -r linux-x64 -c Release -o $ARTIFACTS_FOLDER
 
 cd $ARTIFACTS_FOLDER
 
-docker build --label matheusneder/environmental-stressor --tag v$TRAVIS_BUILD_NUMBER --tag latest .
+docker build -t matheusneder/environmental-stressor:v$TRAVIS_BUILD_NUMBER -t matheusneder/environmental-stressor:latest .
 docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-docker push  matheusneder/environmental-stressor:v$TRAVIS_BUILD_NUMBER
-docker push  matheusneder/environmental-stressor:latest
+docker push matheusneder/environmental-stressor:v$TRAVIS_BUILD_NUMBER
+docker push matheusneder/environmental-stressor:latest
 
 rm -Rf $ARTIFACTS_FOLDER
