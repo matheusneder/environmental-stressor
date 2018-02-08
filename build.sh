@@ -2,6 +2,6 @@
 
 set -e
 
-cd Source/Graceterm
+cd Source/Server/EnvironmentalStressor
 
 dotnet build -c Release
