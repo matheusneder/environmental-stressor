@@ -1,0 +1,20 @@
+language: csharp
+mono: none
+dotnet: 2.0.3
+sudo: required
+
+install:
+- ./install.sh
+
+script:
+  - ./build.sh
+
+services:
+  - docker
+  
+deploy:
+  provider: script
+  script: ./deploy.sh  
+  on:
+    branch: release  
+    tags: true
