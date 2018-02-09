@@ -1,4 +1,7 @@
 # Environmental Stressor
+
+[![Build Status](https://travis-ci.org/matheusneder/environmental-stressor.svg?branch=master)](https://travis-ci.org/matheusneder/environmental-stressor)
+
 This is an ASP.NET Core web application for test environment (like a server or cluster).
 
 It provides operations to simulate:
@@ -14,5 +17,5 @@ It provides operations to simulate:
 Docker image available at: https://hub.docker.com/r/matheusneder/environmental-stressor
 
 ```
-# docker run matheusneder/environmental-stressor:v1
+# docker run matheusneder/environmental-stressor:v1.0-alpha.4
 ```
