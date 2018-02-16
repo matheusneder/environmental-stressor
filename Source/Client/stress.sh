@@ -22,7 +22,7 @@ function usage
 {
 	echo "Usage:"
 	echo "$0 PARALLEL_INSTANCES 'command to execute'"
-	echo "For random numbers, use #MINVALUE:MAXVALUE"
+	echo "For random numbers, use @MINVALUE:MAXVALUE"
 }
 
 if ! is-valid-integer $PARALLEL_INSTANCES
@@ -45,7 +45,7 @@ while [ true ]
 do 
 	while [ ${#array[*]} -lt $PARALLEL_INSTANCES ]
 	do
-		$(echo $ACTION | sed -r 's/(.*)#([0-9]*):([0-9]*)(.*)/echo \1$(( ( $RANDOM * $RANDOM ) % (\3 - \2 + 2) + \2))\4/e') & 
+		$(echo $ACTION | sed -r 's/(.*)@([0-9]*):([0-9]*)(.*)/echo \1$(( ( $RANDOM * $RANDOM ) % (\3 - \2 + 2) + \2))\4/e') & 
 		array[c]=$!
 		let c++
 	done
