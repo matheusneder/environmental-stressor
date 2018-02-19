@@ -45,7 +45,7 @@ namespace EnvironmentalStressor
         {
             ConfigureLog(app, env, loggerFactory);
 
-            app.UseGraceterm(o => o.TimeoutSeconds = 15);
+            app.UseGraceterm(/*o => o.TimeoutSeconds = 15*/);
 
             app.UseMvc();
             app.UseSwagger();
