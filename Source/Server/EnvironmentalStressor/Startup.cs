@@ -64,10 +64,10 @@ namespace EnvironmentalStressor
         private void ConfigureLog(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Is(Serilog.Events.LogEventLevel.Verbose)
                 .WriteTo.Async(a => a.Console(new JsonFormatter()))
                 .Enrich.FromLogContext()
                 .ReadFrom.Configuration(Configuration)
-                .MinimumLevel.Is(Serilog.Events.LogEventLevel.Verbose)
                 .CreateLogger();
 
             loggerFactory.AddSerilog();
