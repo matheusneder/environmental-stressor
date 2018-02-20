@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading;
-using Graceterm;
+﻿using Graceterm;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -45,7 +44,16 @@ namespace EnvironmentalStressor
         {
             ConfigureLog(app, env, loggerFactory);
 
-            app.UseGraceterm(/*o => o.TimeoutSeconds = 15*/);
+            app.UseGraceterm(o => 
+            {
+                o.TimeoutSeconds = 60;
+                o.IgnorePaths("/healthz");
+                o.UseCustomPosSigtermIncommingRequestsHandler(async (httpContext) =>
+                {
+                    httpContext.Response.StatusCode = 503;
+                    await httpContext.Response.WriteAsync("My custom message!");
+                });
+            });
 
             app.UseMvc();
             app.UseSwagger();
