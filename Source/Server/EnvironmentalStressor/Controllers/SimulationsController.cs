@@ -37,6 +37,12 @@ namespace KubernetesValidation.Controllers
                 l.Add(new long[102400]);
             }
         }
+        
+        [HttpGet("Dad")]
+        public IActionResult Dad()
+        {
+            return Ok("Hello Dad!");
+        }
 
         private static readonly List<byte[]> memoryLeakHelper = new List<byte[]>();
 
