@@ -17,6 +17,12 @@ namespace KubernetesValidation.Controllers
                 throw new ArgumentNullException(nameof(loggerFactory));
         }
 
+        [HttpGet("Damd")]
+        public IActionResult HelloDamd()
+        {
+            return Ok("Ole Damd!");
+        }
+
         [HttpGet("LongRunning/{sleepForMiliseconds}")]
         public IActionResult LongRunning(int sleepForMiliseconds)
         {
