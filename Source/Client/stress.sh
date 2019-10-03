@@ -45,7 +45,8 @@ while [ true ]
 do 
 	while [ ${#array[*]} -lt $PARALLEL_INSTANCES ]
 	do
-		$(echo $ACTION | sed -r 's/(.*)@([0-9]*):([0-9]*)(.*)/echo \1$(( ( $RANDOM * $RANDOM ) % (\3 - \2 + 2) + \2))\4/e') & 
+	        export rnd=$RANDOM
+		$(echo $ACTION | sed -r 's/(.*)@([0-9]*):([0-9]*)(.*)/echo \1$(( ( $rnd * $rnd ) % (\3 - \2 + 2) + \2))\4/e') & 
 		array[c]=$!
 		let c++
 	done
